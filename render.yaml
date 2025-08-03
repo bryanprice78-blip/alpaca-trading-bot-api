@@ -1,0 +1,4 @@
+buildCommand: "pip install -r requirements.txt"
+startCommand: "gunicorn main:app --worker-class uvicorn.workers.UvicornWorker"
+ignoreFiles:
+  - README.mad
