@@ -23,3 +23,38 @@ def latest_data():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+@app.route("/api/tradingbot/buy", methods=["GET"])
+def buy():
+    try:
+        api.submit_order(
+            symbol="AAPL",
+            qty=1,
+            side="buy",
+            type="market",
+            time_in_force="gtc"
+        )
+        return jsonify({"message": "Buy order submitted"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/tradingbot/sell", methods=["GET"])
+def sell():
+    try:
+        api.submit_order(
+            symbol="AAPL",
+            qty=1,
+            side="sell",
+            type="market",
+            time_in_force="gtc"
+        )
+        return jsonify({"message": "Sell order submitted"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
