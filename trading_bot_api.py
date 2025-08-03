@@ -11,3 +11,15 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 BASE_URL = "https://paper-api.alpaca.markets"
 
 api = tradeapi.REST(API_KEY, SECRET_KEY, base_url=BASE_URL)
+@app.route("/api/tradingbot/latest", methods=["GET"])
+def latest_data():
+    try:
+        position = api.get_account().cash
+        clock = api.get_clock()
+        return jsonify({
+            "cash": position,
+            "market_open": clock.is_open,
+            "timestamp": clock.timestamp.isoformat()
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
