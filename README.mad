@@ -1,0 +1,9 @@
+# Alpaca Trading Bot API
+
+A simple Flask API connected to Alpaca to view account data and place buy/sell orders.
+
+## Endpoints
+
+- `/api/tradingbot/latest` → Get cash + market status
+- `/api/tradingbot/buy` → Submit market buy order for AAPL
+- `/api/tradingbot/sell` → Submit market sell order for AAPL
